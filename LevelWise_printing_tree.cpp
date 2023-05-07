@@ -73,13 +73,54 @@ else{
 
 }
 
+// InOrderTraversal
+void inOrderTraversal(Node* root){
+    // base case
+    if(root == NULL){
+        return ;
+    }
+    //LNR
+    inOrderTraversal(root->left);
+    cout<<root->data<< " ";
+    inOrderTraversal(root->right);
+}
+
+
+// preOrderTraversal
+void PreOrderTraversal(Node* root){
+    if(root == NULL){
+        return ;
+    }
+    //NLR
+    cout<<root->data<< " ";
+    PreOrderTraversal(root->left);
+    PreOrderTraversal(root->right);
+}
+
+// Post Order Traversal
+void PostOrderTraversal(Node* root){
+     if(root == NULL){
+        return ;
+    }
+    //LRN
+    PostOrderTraversal(root->left);
+    PostOrderTraversal(root->right);
+    cout<<root->data<<" ";
+}
+
 
 int main(){
 
 Node* root = NULL;
 root = BuildTree();
 
-levelOrderTraversalPrinting(root);
+//levelOrderTraversalPrinting(root);
+
+inOrderTraversal(root);
+cout<<endl;
+PreOrderTraversal(root);
+cout<<endl;
+PostOrderTraversal(root);
 
     return 0;
 }
