@@ -100,7 +100,7 @@ void PreOrderTraversal(Node* root){
 // Post Order Traversal
 void PostOrderTraversal(Node* root){
      if(root == NULL){
-        return ;
+        return ; 
     }
     //LRN
     PostOrderTraversal(root->left);
