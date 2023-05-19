@@ -134,6 +134,93 @@ void BottomView(Node* root){
 
 }
 
+// left view
+
+void leftView(Node* root , vector<int>&ans , int level){
+    if(root == NULL){
+        return ;
+    }
+
+    if(level == ans.size()){
+        ans.push_back(root->data);
+    }
+
+    // left call
+    leftView(root->left , ans , level+1);
+
+    // right call
+    leftView(root->right , ans , level+1);
+}
+
+// left Boundry
+ void printLeftBoundry(Node* root){
+    //base case
+    if(root == NULL){
+        return;
+    }
+    if(root ->left == NULL && root->right == NULL){
+        return ;
+    }
+    cout<< root->data <<" ";
+
+    if(root->left){
+        printLeftBoundry(root->left);
+    }
+    else{
+        printLeftBoundry(root->right);
+    }
+ }
+  // leaf Boundry
+ void printLeafBoundry(Node* root){
+    if(root== NULL){
+        return;
+    }
+    if(root->left == NULL && root->right == NULL){
+        cout<< root->data << " ";
+    }
+    printLeafBoundry(root->left);
+    printLeafBoundry(root->right);
+ }
+
+ // print right Boundry
+
+ void printRightBoundry(Node* root){
+    if(root == NULL){
+        return;
+    }
+    if(root->left == NULL && root->right == NULL){
+        return;
+    }
+    if(root->right){
+        printRightBoundry(root->right);
+    }
+    else{
+        printRightBoundry(root->left);
+    }
+
+    cout<< root->data <<" ";
+ }
+
+
+
+
+//Boundery Traversal
+void BoundryTraversal(Node* root){
+    if(root == NULL){
+        return ;
+    }
+
+    cout<< root->data << " ";
+    // print left boundry
+    printLeftBoundry(root->left);
+    // print leaf boundry
+    printLeafBoundry(root);
+
+    // print right Boumdry
+    printRightBoundry(root->right);
+
+}
+
 
 int main(){
 
@@ -144,8 +231,22 @@ int main(){
   // TopView(root);
 
   // print Bottom View
-  BottomView(root);
+//   BottomView(root);  
 
+// Left View
+
+// vector<int>ans;
+// int level = 0;
+
+// leftView(root ,ans ,level);
+
+// cout<<"Printing Left View"<<endl;
+
+// for(auto i : ans){
+//     cout<< i <<" "  ;
+// }
+ 
+ BoundryTraversal(root);
 
     return 0;
 }
