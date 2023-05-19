@@ -88,13 +88,63 @@ void TopView(Node* root){
 }
 
 
+// print the Bottom view
+// only map ki condtion remove krni hai. that mean hr bar update krna hai
+void BottomView(Node* root){
+    if(root == NULL){
+        return ;
+    }
+  // create map . Hme horizontal distance ke corrosponding mai node ka data store krna hai.
+  map<int,int> topNode;
+
+  // level order traversal
+  // we will store the pair consisiting of node and horizontal distance
+  queue<pair<Node*,int>>q;
+
+  q.push(make_pair(root , 0));
+
+  while(!q.empty()){
+     pair<Node* , int> temp = q.front();
+     q.pop();
+
+     Node* frontNode = temp.first;
+     int hd = temp.second;
+
+   
+     topNode[hd] = frontNode->data;
+
+     if(frontNode->left){
+        q.push(make_pair(frontNode->left , hd-1));
+
+     }
+     if(frontNode->right){
+        q.push(make_pair(frontNode->right , hd+1));
+     }
+
+
+  }
+
+  // Ab hmara answer map mai store ho gya hoga
+  cout<< "printing the answer :"<< endl;
+
+  for(auto i : topNode){
+    cout<< i.first << " -> "<< i.second << endl;
+  }
+
+
+}
+
+
 int main(){
 
    Node* root = NULL;
 
    root = buildTree();
 // print top view
-   TopView(root);
+  // TopView(root);
+
+  // print Bottom View
+  BottomView(root);
 
 
     return 0;
